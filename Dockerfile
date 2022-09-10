@@ -9,7 +9,7 @@ ARG APP_UID=1368
 RUN adduser --disabled-password --uid "$APP_UID" --no-create-home --gecos "$APP_USER" --shell /sbin/nologin "$APP_USER"
 
 # Server binary
-ARG APP_VERSION=126.2
+ENV APP_VERSION=126.2
 ARG APP_BIN="/opt/server.jar"
 RUN wget \
         --quiet \
@@ -27,6 +27,5 @@ EXPOSE 6567/udp 6567/tcp
 
 USER "$APP_USER"
 WORKDIR "$DATA_DIR"
-ENV APP_BIN="$APP_BIN" \
-    JAVA_OPT="-Xms8M -Xmx1G"
+ENV APP_BIN="$APP_BIN" 
 ENTRYPOINT exec java $JAVA_OPT -jar "$APP_BIN"
