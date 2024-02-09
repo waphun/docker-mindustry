@@ -1,4 +1,4 @@
-FROM amd64/alpine:20230208
+FROM amd64/alpine:20230901
 RUN apk update && \
     apk add --no-cache \
         openjdk17-jre-headless=17.0.9_p8-r0
@@ -9,7 +9,7 @@ ARG APP_UID=1368
 RUN adduser --disabled-password --uid "$APP_UID" --no-create-home --gecos "$APP_USER" --shell /sbin/nologin "$APP_USER"
 
 # Server binary
-ARG APP_VERSION=141.3
+ARG APP_VERSION=146
 ARG APP_BIN="/opt/server.jar"
 RUN wget \
         --quiet \
